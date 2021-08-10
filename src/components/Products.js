@@ -1,10 +1,9 @@
 import Product from "./Product";
 import React from "react";
 import "./Products.css";
-// import productList from "./ProductList";
-// import selectedCategory from "./Header";
 
-const ProductSection = ({ productList }) => {
+
+const products = ({ productList }) => {
   return (
     <section className="products">
       { productList.map((prod) => (
@@ -21,4 +20,4 @@ const ProductSection = ({ productList }) => {
   );
 };
 
-export default ProductSection;
+export default products;

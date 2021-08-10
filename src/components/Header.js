@@ -1,11 +1,12 @@
 import React from "react";
 // import { useState } from "react";
 import "./Header.css";
-import productList from "./ProductList";
+// import productList from "./ProductList";
 
-const categories = ["all",...new Set(productList.map((p) => p.category)),];
 
-const Header = ({ onChoose }) => {
+const Header = ({ onChoose, categories }) => {
+
+
   let index = 1;
   return (
     <nav className="product-filter">
@@ -13,7 +14,7 @@ const Header = ({ onChoose }) => {
       <div className="sort">
         <div className="collection-sort">
           <label>Filter by:</label>
-          <select id="category-select" onChange = {(e) => onChoose(e)}>
+          <select id="category-select" onChange={(e) => onChoose(e)}>
             {categories.map((cat) => (
               <option key={index++}> {cat}</option>
             ))}
