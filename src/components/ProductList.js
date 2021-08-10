@@ -1,4 +1,4 @@
-const productList = [
+const productListOrigin = [
     {
       id: 1,
       title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
@@ -187,4 +187,4 @@ const productList = [
     },
   ];
 
-  export default productList;
+  export default productListOrigin;
