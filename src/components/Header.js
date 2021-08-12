@@ -1,7 +1,5 @@
 import React from "react";
-// import { useState } from "react";
 import "./Header.css";
-// import productList from "./ProductList";
 
 
 const Header = ({ onChoose, categories }) => {
