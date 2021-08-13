@@ -1,28 +1,47 @@
-import React from "react";
-import "./Product.css";
+import React, { useState } from "react";
+import "./Cart.css";
 import { useContext } from "react";
-import Product from "./Product";
 import CartContext from "./CartContext";
-
+import { Button, Drawer, ListItem, List } from "@material-ui/core";
 
 const Cart = () => {
     
-const { addedToCart, SetAddedToCart } = useContext(CartContext);
+  const [ open, SetOpen ] = useState(false);
+  const { addedToCart, SetAddedToCart } = useContext(CartContext);
+  let index = 0;
 
   
+  console.log('open', open);
+  //  console.log([...addedToCart]);
   return (
-    <section className="cart">
-      {addedToCart.map((prod) => (
-        <Product
-          key={prod.id}
-          title={prod.title}
-          price={prod.price}
-          description={prod.description}
-          category={prod.category}
-          image={prod.image}
-        />
-      ))}
-    </section>
+    //   <List>
+    //     <ListItem><h1>gg</h1></ListItem>
+    //   </List>
+    // </Drawer>
+    <>
+      <Button onClick={() => SetOpen(true)}>open</Button>
+
+      <Drawer open={open}>
+        <List>
+          <Button onClick={() => SetOpen(false)}>X</Button>
+
+          {[...addedToCart].map((prod) => (
+            <ListItem key={index++}>
+              <div className="product-image">
+                {/* <div className="small-image"  >
+                <img  src={prod.e.image} alt="Error" />{" "}
+                </div> */}
+                <div className="product-info">
+                  <h5> {prod.e.title}</h5>
+                  <h6> {prod.e.price}$ </h6>
+                  <h6> {prod.e.category} </h6>
+                </div>
+              </div>
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+    </>
   );
 };
 

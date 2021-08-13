@@ -4,22 +4,30 @@ import { useContext } from "react";
 import React from "react";
 import "./Product.css";
 import CartContext from "./CartContext";
+// import RemoveContext from "../App";
+
+
+
 const Product = ({ title, price, description, category, image }) => {
-const {addedToCart,SetAddedToCart} = useContext(CartContext);
+  const { addedToCart, onAdd } = useContext(CartContext);
+  // const { onRemove } = useContext(RemoveContext);
+
   return (
     <div className="product-card">
-      {/* <button onClick={() => setShowTodos(!showTodos)}>
-        {showTodos ? "Remove" : "Add"} Todos
-      </button> */}
-      {/* todo add to cart  */}
-
       <Button
-        onClick={()=>SetAddedToCart({ title, price, description, category, image })}
+        onClick={() => onAdd({ title, price, description, category, image })}
         variant="contained"
         color="primary"
       >
         Add
       </Button>
+      {/* <Button
+        onClick={() => onRemove({ title, price, description, category, image })}
+        variant="contained"
+        color="primary"
+      >
+        Remove
+      </Button> */}
       <div className="product-image">
         <img src={image} alt="Error" />{" "}
       </div>

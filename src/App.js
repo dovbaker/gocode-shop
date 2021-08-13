@@ -5,12 +5,31 @@ import CartContext from "./components/CartContext";
 import Header from "./components/Header";
 import ProductSection from "./components/Products";
 import Cart from "./components/Cart";
+import { Button, Drawer, List, ListItem } from "@material-ui/core";
+import { createContext } from "react";
+
+const RemoveContext = createContext(null);
+
+
 let emptyArr = [];
 
 const App = () => {
   const [productListOrigin, SetProductListOrigin] = useState(emptyArr);
   const [productList, SetProductList] = useState(emptyArr);
-   const [addedToCart, SetAddedToCart] = useState(emptyArr);
+  const [addedToCart, SetAddedToCart] = useState(emptyArr);
+
+  const onAdd = (e) => {
+    
+      SetAddedToCart([ ...addedToCart,{e}]);
+    
+  };
+
+  const onRemove = (e) => {
+    if ([...addedToCart,].findIndex({e})!=-1)
+
+      SetAddedToCart([...addedToCart].splice([...addedToCart,].findIndex({ e })));
+  };
+
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
@@ -19,6 +38,8 @@ const App = () => {
         SetProductListOrigin(json);
       });
   }, []);
+
+
 //change to genric func annd move out
   const categories = [
     "all",
@@ -39,10 +60,12 @@ const App = () => {
 
   return (
     <div>
-      <CartContext.Provider value={{ addedToCart, SetAddedToCart }}>
-        <Cart/>
-        <Header onChoose={(e) => onChoose(e)} categories={categories} />
+      <CartContext.Provider value={{ addedToCart, onAdd }}>
+      <RemoveContext.Provider value={onRemove}>
+        <Cart />
+        <Header onChoose={(e) => onAdd(e)} categories={categories} />
         <ProductSection productList={productList} />
+      </RemoveContext.Provider>
       </CartContext.Provider>
     </div>
   );

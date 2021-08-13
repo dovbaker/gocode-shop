@@ -8,7 +8,7 @@ const Header = ({ onChoose, categories }) => {
   let index = 1;
   return (
     <nav className="product-filter">
-      <h1>Jackets</h1>
+                       <h1>Jackets</h1>
       <div className="sort">
         <div className="collection-sort">
           <label>Filter by:</label>
