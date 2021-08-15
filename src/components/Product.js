@@ -23,13 +23,13 @@ console.log(id);
       >
         Add
       </Button>
-      <Button
+      {/* <Button
         onClick={() => onRemove({ id })}
         variant="contained"
         color="primary"
       >
         Remove
-      </Button>
+      </Button> */}
       <div className="product-image">
         <img src={image} alt="Error" />{" "}
       </div>
