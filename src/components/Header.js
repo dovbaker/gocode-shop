@@ -12,7 +12,7 @@ const Header = ({ onChoose, categories }) => {
       <div className="sort">
         <div className="collection-sort">
           <label>Filter by:</label>
-          <select id="category-select" onChange={(e) => onChoose(e)}>
+          <select id="category-select" onChange={onChoose}>
             {categories.map((cat) => (
               <option key={index++}> {cat}</option>
             ))}

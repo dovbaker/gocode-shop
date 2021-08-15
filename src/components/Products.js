@@ -4,11 +4,14 @@ import "./Products.css";
 
 
 const products = ({ productList }) => {
+  console.log(productList);
   return (
     <section className="products">
-      { productList.map((prod) => (
-        <Product
+
+      {productList.map((prod) => (
+       <Product
           key={prod.id}
+          id={prod.id}
           title={prod.title}
           price={prod.price}
           description={prod.description}

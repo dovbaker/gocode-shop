@@ -11,13 +11,8 @@ const Cart = () => {
   let index = 0;
 
   
-  console.log('open', open);
-  //  console.log([...addedToCart]);
   return (
-    //   <List>
-    //     <ListItem><h1>gg</h1></ListItem>
-    //   </List>
-    // </Drawer>
+  
     <>
       <Button onClick={() => SetOpen(true)}>open</Button>
 

@@ -4,30 +4,32 @@ import { useContext } from "react";
 import React from "react";
 import "./Product.css";
 import CartContext from "./CartContext";
-// import RemoveContext from "../App";
+import RemoveContext from "./RemoveContext";
 
 
 
-const Product = ({ title, price, description, category, image }) => {
+const Product = ({id, title, price, description, category, image }) => {
   const { addedToCart, onAdd } = useContext(CartContext);
-  // const { onRemove } = useContext(RemoveContext);
-
+  const onRemove = useContext(RemoveContext);
+console.log(id);
   return (
     <div className="product-card">
       <Button
-        onClick={() => onAdd({ title, price, description, category, image })}
+        onClick={() =>
+          onAdd({ id, title, price, description, category, image })
+        }
         variant="contained"
         color="primary"
       >
         Add
       </Button>
-      {/* <Button
-        onClick={() => onRemove({ title, price, description, category, image })}
+      <Button
+        onClick={() => onRemove({ id })}
         variant="contained"
         color="primary"
       >
         Remove
-      </Button> */}
+      </Button>
       <div className="product-image">
         <img src={image} alt="Error" />{" "}
       </div>
