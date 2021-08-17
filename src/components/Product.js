@@ -11,7 +11,7 @@ import RemoveContext from "./RemoveContext";
 const Product = ({id, title, price, description, category, image }) => {
   const { addedToCart, onAdd } = useContext(CartContext);
   const onRemove = useContext(RemoveContext);
-console.log(id);
+// console.log(id);
   return (
     <div className="product-card">
       <Button
@@ -23,13 +23,15 @@ console.log(id);
       >
         Add
       </Button>
-      {/* <Button
-        onClick={() => onRemove({ id })}
+      <Button
+        onClick={() =>
+          onRemove({ id, title, price, description, category, image })
+        }
         variant="contained"
         color="primary"
       >
         Remove
-      </Button> */}
+      </Button>
       <div className="product-image">
         <img src={image} alt="Error" />{" "}
       </div>

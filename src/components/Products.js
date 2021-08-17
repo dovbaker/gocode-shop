@@ -4,7 +4,7 @@ import "./Products.css";
 
 
 const products = ({ productList }) => {
-  console.log(productList);
+  // console.log(productList);
   return (
     <section className="products">
 

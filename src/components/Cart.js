@@ -20,16 +20,16 @@ const Cart = () => {
         <List>
           <Button onClick={() => SetOpen(false)}>X</Button>
 
-          {[...addedToCart].map((prod) => (
+          {addedToCart.map((prod) => (
             <ListItem key={index++}>
               <div className="product-image">
                 {/* <div className="small-image"  >
                 <img  src={prod.e.image} alt="Error" />{" "}
                 </div> */}
                 <div className="product-info">
-                  <h5> {prod.e.title}</h5>
-                  <h6> {prod.e.price}$ </h6>
-                  <h6> {prod.e.category} </h6>
+                  <h5> {prod.title}</h5>
+                  <h6> {prod.price}$ </h6>
+                  <h6> {prod.category} </h6>
                 </div>
               </div>
             </ListItem>
