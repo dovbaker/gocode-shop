@@ -34,6 +34,15 @@ const App = () => {
     
   };
 
+  const onChoose = (e) => {
+    if (e.target.value === "all") SetProductList(productListOrigin);
+    else
+      SetProductList(
+        productListOrigin.filter((prod) => prod.category === e.target.value)
+      );
+  };
+
+
   //server
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -50,7 +59,7 @@ const App = () => {
       <CartContext.Provider value={{ addedToCart, onAdd }}>
         <RemoveContext.Provider value={onRemove}>
           <Cart />
-          <Header onChoose={onAdd} categories={categories} />
+          <Header onChoose={onChoose} categories={categories} />
           <Products productList={productList} />
         </RemoveContext.Provider>
       </CartContext.Provider>
