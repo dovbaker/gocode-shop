@@ -20,13 +20,11 @@ const Cart = () => {
           {addedToCart.map((prod) => (
             <ListItem key={index++}>
               <div className="product-image">
-                {/* <div className="small-image"  >
-                <img  src={prod.e.image} alt="Error" />{" "}
-                </div> */}
                 <div className="product-info">
                   <h5> {prod.title}</h5>
-                  <h6> {prod.price}$ </h6>
                   <h6> {prod.category} </h6>
+                  <h6> price: {prod.qty * prod.price}$ </h6>
+                  <h6>Quantety: {prod.qty}</h6>
                 </div>
               </div>
             </ListItem>

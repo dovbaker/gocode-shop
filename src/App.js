@@ -5,6 +5,7 @@ import Cart from "./components/Cart";
 import Products from "./components/Products";
 import RemoveContext from "./components/RemoveContext";
 import CartContext from "./components/CartContext";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 let emptyArr = [];
 
@@ -34,22 +35,30 @@ const App = () => {
 
   //add to cart
   const onAdd = (e) => {
+    console.log("prod:" + e);
     e = { ...e, qty: 1 };
-    if (!addedToCart.find((prod) => prod.title === e.title))
+    console.log("prod qty:" + e.qty);
+
+    if (!addedToCart.find((prod) => prod.title === e.title)) {
       SetAddedToCart([...addedToCart, e]);
-    else {
-      e.qty = addedToCart.find((prod) => prod.title === e.title).qty;
-      SetAddedToCart([
-        ...addedToCart.splice((prod) => prod.title === e.title),
-        e,
-      ]);
+      console.log("prod added and new:" + [...addedToCart, e]);
+    } else {
+      e.qty = addedToCart.find((prod) => prod.title === e.title).qty + 1;
+      console.log(addedToCart.find((prod) => prod.title === e.title).qty + 1);
+      const arr = addedToCart.filter((prod) => prod.title !== e.title);
+      console.log("arr" + arr);
+      SetAddedToCart([...arr, e]);
+      console.log([...arr, e]);
     }
   };
 
   //remove from cart
   const onRemove = (e) => {
-    console.log("onRemove", e);
-    SetAddedToCart(addedToCart.filter((product) => product.id !== e.id));
+    if (addedToCart.find((prod) => prod.title === e.title).qty > 1) {
+      e.qty = addedToCart.find((prod) => prod.title === e.title).qty - 1;
+      const arr = addedToCart.filter((prod) => prod.title !== e.title);
+      SetAddedToCart([...arr, e]);
+    } else SetAddedToCart(addedToCart.filter((product) => product.id !== e.id));
   };
 
   const onChoose = (e) => {
@@ -85,23 +94,42 @@ const App = () => {
     value: [10, 100],
   });
   return (
-    <div>
-      <CartContext.Provider value={{ addedToCart, onAdd }}>
-        <RemoveContext.Provider value={onRemove}>
-          <Cart />
-          <Header
-            min={min}
-            max={max}
-            onChoose={onChoose}
-            categories={categories}
-            productList={productList}
-            priceRange={priceRange}
-            setPriceRange={priceFilter}
-          />
-          <Products productList={productList} />
-        </RemoveContext.Provider>
-      </CartContext.Provider>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+          </ul>
+        </nav>
+        <div>
+          <Route path="/">
+            <CartContext.Provider value={{ addedToCart, onAdd }}>
+              <RemoveContext.Provider value={onRemove}>
+                <Cart />
+                <Header
+                  min={min}
+                  max={max}
+                  onChoose={onChoose}
+                  categories={categories}
+                  productList={productList}
+                  priceRange={priceRange}
+                  setPriceRange={priceFilter}
+                />
+                <Products productList={productList} />
+              </RemoveContext.Provider>
+            </CartContext.Provider>
+          </Route>
+        </div>
+      </div>
+    </Router>
   );
 };
 
