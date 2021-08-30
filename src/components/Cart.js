@@ -5,14 +5,11 @@ import CartContext from "./CartContext";
 import { Button, Drawer, ListItem, List } from "@material-ui/core";
 
 const Cart = () => {
-    
-  const [ open, SetOpen ] = useState(false);
-  const { addedToCart, SetAddedToCart } = useContext(CartContext);
+  const [open, SetOpen] = useState(false);
+  const { addedToCart } = useContext(CartContext);
   let index = 0;
 
-  
   return (
-  
     <>
       <Button onClick={() => SetOpen(true)}>open</Button>
 

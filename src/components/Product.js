@@ -6,12 +6,10 @@ import "./Product.css";
 import CartContext from "./CartContext";
 import RemoveContext from "./RemoveContext";
 
-
-
-const Product = ({id, title, price, description, category, image }) => {
-  const { addedToCart, onAdd } = useContext(CartContext);
+const Product = ({ id, title, price, description, category, image }) => {
+  const { onAdd } = useContext(CartContext);
   const onRemove = useContext(RemoveContext);
-// console.log(id);
+  // console.log(id);
   return (
     <div className="product-card">
       <Button
